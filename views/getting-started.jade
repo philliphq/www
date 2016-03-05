@@ -1,0 +1,24 @@
+extends /layouts/_base
+
+block content
+  h1 Getting Started
+  
+  h4 Installation
+  
+  :marked
+    Installing Phillip is easy. Just use composer to install it globally
+    
+    ```sh
+    composer global require philliphq/phillip
+    ```
+
+    Then you just have to call `phillip` from the root of your project to run it's tests.
+    
+    If you'd like to install phillip on a per-project basis, you can.
+    
+    ```sh
+    composer require philliphq/phillip
+    vendor/bin/phillip
+    ```
+
+    Now you have Phillip installed, you can [write some tests](/write-tests).

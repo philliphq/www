@@ -1,0 +1,31 @@
+doctype html
+html
+
+  head
+    meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+    meta(name='description', content='description of your site')
+    meta(name='author', content= "author of the site")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    title= _path
+    
+    script(src='https://use.typekit.net/svv5vzz.js')
+    script (function(d) {var config = {kitId: 'svv5vzz',scriptTimeout: 3000,async: true},h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)})(document);
+
+    != css('/')
+
+  body
+    include /templates/_header
+    
+    main
+      include /templates/_sidebar
+      
+      section.content
+        block content
+        
+    include /templates/_footer
+
+    script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js')
+    script hljs.initHighlightingOnLoad();
+    != js('/')

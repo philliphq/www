@@ -1,0 +1,45 @@
+body
+  background-color: $purple
+  color: $white
+  padding: 4.5em 1.5em
+
+  @media (min-width: 36em)
+    padding: 4.5em 3em
+
+  @media (min-width: 42em)
+    padding: 4.5em
+
+header
+  margin-bottom: 3em
+
+  h3
+    color: white
+
+.mustache
+  margin: .25em 0 1.75em
+  height: 1em
+  display: block
+
+  path
+    fill: $yellow
+
+main
+  +split(1, 4.27, $bp_large)
+
+footer
+  margin-top: 4.5em
+  +grid(1, 1, 2)
+
+  span
+    display: block
+
+  @media (min-width: $bp_large)
+    span
+      display: inline-block
+      vertical-align: bottom
+
+    .license
+      text-align: right
+
+.content
+  max-width: $container_width

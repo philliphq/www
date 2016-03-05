@@ -1,0 +1,122 @@
+extends /layouts/_base
+
+block content
+  h1 Writing Tests
+  
+  :marked
+    Tests are written using the simple helper `test()`. It take two arguments, a short description of the test, and a callback to execute. The test object is passed into the callback as the first argument.
+    
+    ```php
+    test('My First Test', function($t) {
+        // Test code goes here
+    });
+    ```
+    
+    The simplest way to write a test, it to call `pass()` or `fail()` directly.
+    
+    ```php
+    test('Does 1 equal 1', function($t) {
+        if (1 === 1) {
+            return $t->pass();
+        }
+        
+        return $t->fail('1 does not equal 1');
+    });
+    ```
+    
+    The `pass()` method can also take a boolean argument, to simplify your test even further. If the expression passed to `pass()` evaluates to true, the test passes, otherwise it will fail.
+    
+    ```php
+    test('Does this equal that', function($t) {
+        return $t->pass('this' === 'that');
+    });
+    ```
+
+    There are also `error()` and `skip()` methods available on the test object, allowing you to manually determine the test's result.
+    
+    #### Assertions
+    
+    Assertions can be made by calling the `is()` or `does()` methods on the test object, both of which take a single value as an argument. You can chain assertion methods to these to make assertions against this first value. `is()` and `does()` are aliases of each other, and both are provided to allow you to write your assertion chains in plain english.
+    
+    ```php
+    test('Does 1 equal 1', function($t) {
+      $t->is(1)->anInteger();
+      $t->does(new Object)->implement(IteratorAggregate::class);
+    });
+    ```
+  
+    The assertions are run in order, and if any of them should fail, the test is stopped immediately and marked as failed.
+    
+    Here are the assertion methods available to you.
+    
+    ###### `not()`
+    
+    Inverts the assertion. Any assertions appearing after this in the chain will return the opposite result.
+    
+    ```php
+    $t->is(1)->not()->equalTo(2);
+    ```
+    
+    ###### `equalTo()`
+    
+    Asserts that two values are equal, and of equal type.
+    
+    ```php
+    $t->is(1)->equalTo(1);
+    ```
+    
+    ###### `equivalentTo()`
+    
+    Asserts that two values are equivalent, regardless of type.
+    
+    ```php
+    $t->is(1)->equivalentTo('1');
+    ```
+
+    ###### `blank()`
+    
+    Asserts the a value is empty.
+    
+    ```php
+    $t->is([])->blank();
+    ```
+
+    ###### `anArray()`
+    
+    Asserts that the value is an array.
+    
+    ```php
+    $t->is([])->anArray();
+    ```
+    
+    ###### `traversable()`
+    
+    Asserts that the value is either an array, or implements PHP's `Traversable` interface.
+    
+    ```php
+    $t->is(new SplFixedArray(10))->traversable();
+    ```
+
+    ###### `anInstanceOf()`
+    
+    Asserts that the value is an instance of a class.
+    
+    ```php
+    $t->is(new SplFixedArray(10))->anInstanceOf(IteratorAggregate::class);
+    ```
+    
+    ###### `implement()`
+    
+    Asserts that the value implements an interface. This differs from `anInstanceOf()` in that it will only pass for an implemented interface, and not for a parent class.
+    
+    ```php
+    $t->does(new SplFixedArray(10))->implement(IteratatorAggregate::class);
+    ```
+
+    ###### `match()`
+    
+    Asserts that the value matches a regular expression.
+    
+    ```php
+    $t->does('this')->match('/[a-z]+/');
+    ```
