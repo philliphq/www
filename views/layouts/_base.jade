@@ -1,8 +1,8 @@
 doctype html
-html
+html(lang='en=GB')
 
   head
-    meta(charset='utf8')
+    meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
     meta(name='description', content='A PHP Testing Framework for the 21st Century')
     meta(name='author', content= "James Dinsdale")
@@ -24,5 +24,5 @@ html
     include /templates/_footer
 
     script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js')
-    script hljs.initHighlightingOnLoad();
-    //- != js('/')
+    script
+      | (function(P,h,i,L,l,I,p){P['GoogleAnalyticsObject']=l;P[l]=P[l]||function(){(P[l].q=P[l].q||[]).push(arguments)},P[l].l=1*new Date();I=h.createElement(i),p=h.getElementsByTagName(i)[0];I.async=1;I.src=L;p.parentNode.insertBefore(I,p)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-34975520-2', 'auto');ga('send', 'pageview');hljs.initHighlightingOnLoad();
